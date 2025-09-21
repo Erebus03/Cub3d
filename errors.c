@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/21 00:53:57 by zzin              #+#    #+#             */
-/*   Updated: 2025/09/21 22:12:03 by zzin             ###   ########.fr       */
+/*   Created: 2025/09/21 17:28:40 by zzin              #+#    #+#             */
+/*   Updated: 2025/09/21 18:25:05 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init(t_cub *c)
+void	verr(char *msg)
 {
-	c->mlx = mlx_init();
-	if (!c->mlx)
-		return verr("minilibx err.");
+	printf("%s\n", msg);
+	return ;
 }
 
-int main()
+void	exiterr(char *msg)
 {
-	t_cub	c;
-	init(&c);
-	run(&c);
+	if (msg)
+		verr(msg);
+	exit(1);
 }

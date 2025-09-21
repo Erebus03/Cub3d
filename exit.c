@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/21 00:53:57 by zzin              #+#    #+#             */
-/*   Updated: 2025/09/21 22:12:03 by zzin             ###   ########.fr       */
+/*   Created: 2025/09/21 18:51:13 by zzin              #+#    #+#             */
+/*   Updated: 2025/09/21 23:41:01 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init(t_cub *c)
+void	exitcub(t_cub *c)
 {
-	c->mlx = mlx_init();
-	if (!c->mlx)
-		return verr("minilibx err.");
-}
-
-int main()
-{
-	t_cub	c;
-	init(&c);
-	run(&c);
+	if (c->mlx)
+	{
+		mlx_destroy_window(c->mlx, c->win);
+		mlx_destroy_display(c->mlx);
+		free(c->mlx);
+	}
+	exit(0);
 }
