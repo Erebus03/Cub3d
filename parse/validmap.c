@@ -1,36 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validmap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/21 00:53:57 by zzin              #+#    #+#             */
-/*   Updated: 2025/09/22 15:29:41 by zzin             ###   ########.fr       */
+/*   Created: 2025/09/21 23:41:10 by zzin              #+#    #+#             */
+/*   Updated: 2025/09/22 14:52:42 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-void	init(t_cub *c)
-{
-	int	x;
-	int	y;
-
-	c->map = NULL;
-	c->mlx = mlx_init();
-	if (!c->mlx)
-		return verr("minilibx err.");
-	parse(c);
-	mlx_get_screen_size(c->mlx, &x, &y);
-	printf("x=%d\ny=%d\n", x, y);
-	c->win = mlx_new_window(c->mlx, x, y, "zcub");
-	draw_minimap(c);
-}
-
-int main()
-{
-	t_cub	c;
-	init(&c);
-	run(&c);
-}
+#include "../cub3d.h"

@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/21 00:53:57 by zzin              #+#    #+#             */
-/*   Updated: 2025/09/22 15:29:41 by zzin             ###   ########.fr       */
+/*   Created: 2025/09/22 15:19:33 by zzin              #+#    #+#             */
+/*   Updated: 2025/09/22 19:18:46 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init(t_cub *c)
+void	square(t_cub *c, int x, int y)
 {
-	int	x;
-	int	y;
+	int	w;
+	int	h;
 
-	c->map = NULL;
-	c->mlx = mlx_init();
-	if (!c->mlx)
-		return verr("minilibx err.");
-	parse(c);
-	mlx_get_screen_size(c->mlx, &x, &y);
-	printf("x=%d\ny=%d\n", x, y);
-	c->win = mlx_new_window(c->mlx, x, y, "zcub");
-	draw_minimap(c);
+	h = y;
+	while(h <= c->minmap.square_size)
+	{
+		w = x;
+		while (w <= c->minmap.square_size)
+		{
+			mlx_pixel_put(c->mlx, c->win, w, h, 0x663399);
+			w++;
+		}
+		h++;
+	}
 }
 
-int main()
+void	draw_minimap(t_cub *c)
 {
-	t_cub	c;
-	init(&c);
-	run(&c);
+	printf("%s\n", c->map[0]);
+	//printf("%zu\n", ft_strlen(c->map[0]));
+	//square(c, 0, 0);
+	//printf("%d", (50 * 50) / 100);
+	//mlx_put_image_to_window(c->mlx, c->win, )
 }
