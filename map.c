@@ -6,7 +6,7 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:54:03 by zzin              #+#    #+#             */
-/*   Updated: 2025/09/22 15:19:57 by zzin             ###   ########.fr       */
+/*   Updated: 2025/09/24 16:06:50 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	draw_map(t_cub *c)
 {
-	if (!c->map)
-		return ;
-	printf("map =%s\n", *c->map);
+	//if (!c->map)
+	//	return ;
+	//printf("map =%s\n", *c->map);
 }

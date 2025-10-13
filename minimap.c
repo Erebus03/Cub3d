@@ -6,7 +6,7 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:19:33 by zzin              #+#    #+#             */
-/*   Updated: 2025/09/22 19:18:46 by zzin             ###   ########.fr       */
+/*   Updated: 2025/09/24 18:08:57 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	square(t_cub *c, int x, int y)
 void	draw_minimap(t_cub *c)
 {
 	printf("%s\n", c->map[0]);
+	//printf("%s\n", *c->map);
 	//printf("%zu\n", ft_strlen(c->map[0]));
 	//square(c, 0, 0);
 	//printf("%d", (50 * 50) / 100);
