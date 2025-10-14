@@ -3,7 +3,7 @@ CFLAGS =
 MLXFLAGS = -lmlx -lXext -lX11
 NAME = cub3d
 HFILES = cub3d.h
-SRC = main.c utils.c errors.c exit.c ft_utils/str.c parse/parse.c map.c minimap.c
+SRC = main.c utils.c errors.c exit.c ft_utils/str.c parser/parse.c map.c minimap.c
 OBJ = ${SRC:.c=.o}
 
 .PHONY: all re clean fclean

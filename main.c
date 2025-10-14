@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 00:53:57 by zzin              #+#    #+#             */
-/*   Updated: 2025/10/14 17:32:32 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/14 23:23:54 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main(int ac, char **av)
 {
 	t_cub	c;
 	
-	if (argc != 2)
+	if (ac != 2)
 		return (write(2, "Error: Incorrect number of arguments\n", 38), 1);
 	if (check_extension_init())
 
