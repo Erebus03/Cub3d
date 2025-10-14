@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 00:53:57 by zzin              #+#    #+#             */
-/*   Updated: 2025/09/24 18:06:52 by zzin             ###   ########.fr       */
+/*   Updated: 2025/10/14 17:32:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,25 @@ void	init(t_cub *c)
 	draw_minimap(c);
 }
 
-int main()
+int main(int ac, char **av)
 {
 	t_cub	c;
+	
+	if (argc != 2)
+		return (write(2, "Error: Incorrect number of arguments\n", 38), 1);
+	if (check_extension_init())
+
+
+	/*
+	*	check extension and init parsing struct
+	
+	*	assign colors and textures
+	
+	*	built map and check it
+	*/
+
+	
 	init(&c);
+	
 	run(&c);
 }
