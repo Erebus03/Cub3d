@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str.c                                              :+:      :+:    :+:   */
+/*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 19:02:13 by zzin              #+#    #+#             */
-/*   Updated: 2025/09/22 19:05:32 by zzin             ###   ########.fr       */
+/*   Created: 2025/10/15 00:54:02 by araji             #+#    #+#             */
+/*   Updated: 2025/10/15 20:59:54 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#ifndef CUB_H
+#define CUB_H
 
-size_t	ft_strlen(char *s)
-{
-	size_t	i;
+#include "parser/cubparser.h"
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
 
-	i = 0;
-	if (!s)
-		return (i);
-	while (s[i])
-	{
-		i++;
-	}
-	return i;
-}
+
+
+#endif

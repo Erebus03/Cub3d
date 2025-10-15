@@ -1,12 +1,10 @@
 CC= cc
-CFLAGS =
+CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -lmlx -lXext -lX11
 NAME = cub3d
-HFILES = cub3d.h
-SRC = main.c utils.c errors.c exit.c ft_utils/str.c parser/parse.c map.c minimap.c
+SRC = main.c
 OBJ = ${SRC:.c=.o}
 
-.PHONY: all re clean fclean
 
 all: $(NAME)
 
@@ -25,3 +23,4 @@ fclean: clean
 re: fclean all
 
 .SECONDARY: $(OBJ)
+.PHONY: all re clean fclean
