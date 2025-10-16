@@ -6,7 +6,7 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:56 by araji             #+#    #+#             */
-/*   Updated: 2025/10/16 20:34:26 by zzin             ###   ########.fr       */
+/*   Updated: 2025/10/16 20:42:30 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,28 +90,27 @@ int parse_line(char *line, t_cub **data)
 int main(int ac, char **av)
 {
 	t_cub	*data = NULL;
-	init_cub();
-//	if (ac != 2)
-//	{
-//		write(2, "Error\nInvalid number of arguments\n", 35);
-//		return (1);
-//	}
-//
-//	// this will take the av[1] as a filename and check if it ends with .cub
-//	if (check_extension(av[1]) == 0)
-//		return (1);
-//
-//	// this will initialize the struct with default values (NULL, 0, etc.)
-//	if (init_struct(data) == 0)
-//		return (1);
-//	
-//	write(1, "Struct initialized successfully\n", 33);
-//	// free(data);
-//
-//	if (parse_file(av[1], &data) == 0)
-//	{
-//		// free the struct and its members
-//		return (1);
-//	}
+	if (ac != 2)
+	{
+		write(2, "Error\nInvalid number of arguments\n", 35);
+		return (1);
+	}
+
+	// this will take the av[1] as a filename and check if it ends with .cub
+	if (check_extension(av[1]) == 0)
+		return (1);
+
+	// this will initialize the struct with default values (NULL, 0, etc.)
+	if (init_struct(data) == 0)
+		return (1);
+	
+	write(1, "Struct initialized successfully\n", 33);
+	// free(data);
+
+	if (parse_file(av[1], &data) == 0)
+	{
+		// free the struct and its members
+		return (1);
+	}
 	return (0);
 }
