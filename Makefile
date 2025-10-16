@@ -1,5 +1,5 @@
 CC= cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -w
 MLXFLAGS = -lmlx -lXext -lX11
 NAME = cub3d
 SRC = main.c \
