@@ -2,7 +2,8 @@ CC= cc
 CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -lmlx -lXext -lX11
 NAME = cub3d
-SRC = main.c
+SRC = main.c \
+	parser_utils/get_next_line.c parser_utils/get_next_line_utils.c 
 OBJ = ${SRC:.c=.o}
 
 

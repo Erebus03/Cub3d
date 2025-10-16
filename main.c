@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:56 by araji             #+#    #+#             */
-/*   Updated: 2025/10/15 21:00:33 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/15 22:08:45 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int init_struct(t_cub *data)
 {
 	int	i;
 
-	//allocate memory for the struct
+	// allocate memory for the struct
 	// init that shiit
 
 	data = malloc(sizeof(t_cub));
@@ -63,21 +63,28 @@ int	parse_file(char *filename, t_cub **data)
 	// close the file
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-	{
-		write(2, "Error\nFailed to open file\n", 27);
-		return (0);
-	}
+		return (write(2, "Error\nFailed to open file\n", 27), 0);
 
+	(void)data;
 	line = get_next_line(fd); // to build
 	while (line)
 	{
-		// parse_line(line, data); // to build
-		// get_data_from_line(line, data); // to build
+		parse_line(line, data); // to build
 		free(line);
 		line = get_next_line(fd);
 	}
 
 	close(fd);
+	return (1);
+}
+
+int parse_line(char *line, t_cub **data)
+{
+	// parse the line
+	// fill the struct
+	// check for errors
+	(void)line;
+	(void)data;
 	return (1);
 }
 int main(int ac, char **av)
