@@ -4,6 +4,7 @@ MLXFLAGS = -lmlx -lXext -lX11
 NAME = cub3d
 SRC = main.c \
 	$(wildcard parser_utils/*.c) \
+	$(wildcard parser/*.c) \
 	$(wildcard raycaster/*.c)
 OBJ = ${SRC:.c=.o}
 
