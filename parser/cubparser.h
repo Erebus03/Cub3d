@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubparser.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:59 by araji             #+#    #+#             */
-/*   Updated: 2025/10/15 21:22:30 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/16 19:36:49 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ void	lst_add_back(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst);
 void	create_t_list(t_list **lst, int fd);
 void	clean(t_list **lst);
-
+int		parse_line(char *line, t_cub **data);
 #endif
