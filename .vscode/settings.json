@@ -1,0 +1,13 @@
+{
+	"C_Cpp.errorSquiggles": "disabled",
+	"files.associations": {
+		"stdlib.h": "c",
+		"keysym.h": "c",
+		"stdio.h": "c",
+		"keysymdef.h": "c",
+		"cub3d.h": "c",
+		"unistd.h": "c",
+		"cub.h": "c",
+		"cubparser.h": "c"
+	}
+}
