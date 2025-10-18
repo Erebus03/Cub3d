@@ -1,13 +1,5 @@
 CC= cc
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 CFLAGS = -Wall -Wextra -Werror -w
-=======
-CFLAGS = -Wall -Wextra -W
->>>>>>> Stashed changes
-=======
-CFLAGS = -Wall -Wextra -W
->>>>>>> Stashed changes
 MLXFLAGS = -lmlx -lXext -lX11
 NAME = cub3D
 SRC = main.c \
