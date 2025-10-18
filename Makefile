@@ -1,13 +1,20 @@
 CC= cc
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 CFLAGS = -Wall -Wextra -Werror -w
+=======
+CFLAGS = -Wall -Wextra -W
+>>>>>>> Stashed changes
+=======
+CFLAGS = -Wall -Wextra -W
+>>>>>>> Stashed changes
 MLXFLAGS = -lmlx -lXext -lX11
-NAME = cub3d
+NAME = cub3D
 SRC = main.c \
-	$(wildcard parser_utils/*.c) \
 	$(wildcard parser/*.c) \
+	$(wildcard parser/parser_utils/*.c) \
 	$(wildcard raycaster/*.c)
 OBJ = ${SRC:.c=.o}
-
 
 all: $(NAME)
 
