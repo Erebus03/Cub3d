@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:56:41 by araji             #+#    #+#             */
-/*   Updated: 2025/10/18 17:29:32 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/18 19:32:46 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ static char	**allocate_and_fill(char **cells, const char *s, int len, int k)
 		return (clean(cells));
 	while (j < len)
 	{
-		cells[k][j] = s[j];
+		if (s[j] != '\n')
+			cells[k][j] = s[j];
+		else
+			cells[k][j] = '\0';
 		j++;
 	}
 	cells[k][j] = '\0';

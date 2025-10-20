@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 12:12:16 by araji             #+#    #+#             */
-/*   Updated: 2025/10/18 17:43:33 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/20 20:34:44 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	parse_file(char *filename, t_cub **data)
 	if (!line)
 	{
 		write(2, "Empty file\n", 12);
+		// return (close(fd), 0);
 		close(fd);
 		return (0);
 	}
@@ -82,13 +83,16 @@ int	parse_file(char *filename, t_cub **data)
 		// printf("line--->%-s<\n", line);
 		if (!empty_line(line))
 		{
-			extract_data(line + skip_leading_whitespace(line), data);
+			// extract_data(line, data);
+			// extract_data(line + skip_leading_whitespace(line), data);
 			// if (!extract_data(line + skip_leading_whitespace(line), data))
-			// {
-			// 	free(line);
-			// 	close(fd);
-			// 	return (0);
-			// }
+			if (!extract_data(line, data))
+			{
+				// fprintf(2, "Error parsing line %d: %s", i, line); why ??
+				free(line);
+				close(fd);
+				return (0);
+			}
 		}
 		// else
 		// 	printf("Empty line detected\n");

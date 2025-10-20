@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:56 by araji             #+#    #+#             */
-/*   Updated: 2025/10/18 16:59:16 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/18 17:51:58 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int main(int ac, char **av)
 		return (1);
 	}
 
-	// for (int i = 0; i < 4; i++)
-	// 		printf("textures: >%s<\n", data->textures[i]);
+	printf("\n\n\n");
+	for (int i = 0; i < 4; i++)
+			printf("textures: >%s<\n", data->textures[i]);
 	return (0);
 }

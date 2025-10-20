@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:36:14 by araji             #+#    #+#             */
-/*   Updated: 2025/10/18 17:36:07 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/18 19:53:32 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	check_texture(char *line, t_cub **data, t_texture tex_type)
 	// (void)split;
 	if (count != 1)
 	{
+		printf("more than one element in this bitch\n");
 		write(2, "Invalid texture line format\n", 29);
 		while (*split)
 			free(*split++);
@@ -58,7 +59,13 @@ int	check_color(char *line, t_cub **data, int is_floor)
 
 	count = 0;
 	char **split  = ft_split(line, ',', &count);
-
+	if (count != 3)
+	{
+		write(2, "Invalid color line format\n", 27);
+		while (*split)
+			free(*split++);
+		return (0);
+	}
 	printf("R:%s\nG:%s\nB:%s\n", split[0], split[1], split[2]);
 
 	while (*split)
