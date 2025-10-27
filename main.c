@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:56 by araji             #+#    #+#             */
-/*   Updated: 2025/10/18 17:51:58 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/27 21:26:25 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int ac, char **av)
 	t_cub	*data = NULL;
 	if (ac != 2)
 	{
-		write(2, "Invalid number of arguments\n", 29);
+		write(2, "Error\nInvalid number of arguments\n", 35);
 		return (1);
 	}
 
@@ -30,6 +30,13 @@ int main(int ac, char **av)
 
 	printf("\n\n\n");
 	for (int i = 0; i < 4; i++)
-			printf("textures: >%s<\n", data->textures[i]);
+		printf("textures: >%s<\n", data->textures[i]);
+	printf("\n");
+	for (int i = 0; i < 4; i++)
+		printf("floor rgb; >%d<\n", data->flr_rgb[i]);
+	printf("\n");
+	for (int i = 0; i < 4; i++)
+		printf("floor rgb; >%d<\n", data->ceiling_rgb[i]);
+
 	return (0);
 }

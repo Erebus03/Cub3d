@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:33:27 by araji             #+#    #+#             */
-/*   Updated: 2025/10/17 16:49:23 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/27 21:33:48 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	data_collected(t_cub **data)
 {
 	int	i;
 
-	return (1); // for now
+	//return (1); // for now
 	i = -1;
 	while (++i < 4)
 	{
