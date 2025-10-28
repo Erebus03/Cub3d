@@ -6,11 +6,45 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:36:14 by araji             #+#    #+#             */
-/*   Updated: 2025/10/27 21:34:30 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/28 21:35:17 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubparser.h"
+
+
+int	ft_isspace(char c)
+{
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
+}
+
+char	*strip_line(char *line)
+{
+	char	*start;
+	char	*end;
+
+	if (!line)
+		return (NULL);
+
+	printf("Original line: '%s'\n", line);
+	//printf("Stripping line: '%s'\n", line);
+	start = line;
+	while (*start && ft_isspace(*start))
+		start++;
+
+	if (*start == '\0')
+		return (strdup("")); // only spaces
+
+	end = start + ft_strlen(start) - 1;
+	while (end > start && ft_isspace(*end))
+		end--;
+
+	*(end + 1) = '\0';
+
+	return (strdup(start));
+}
 
 int	check_texture(char *line, t_cub **data, t_texture tex_type)
 {
@@ -18,7 +52,7 @@ int	check_texture(char *line, t_cub **data, t_texture tex_type)
 	// (void)data;
 	// (void)line;
 	int	count = 0;
-	char **split  = ft_split(line, ' ', &count);
+	char **split  = ft_split(strip_line(line), ' ', &count);
 	// (void)split;
 	if (count != 1)
 	{
@@ -50,45 +84,12 @@ int	get_textures(char *line, t_cub **data)
 		return (write(2, "Error\nInvalid texture identifier\n", 34), 0);
 }
 
-int	ft_isspace(char c)
-{
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
-}
-
-
-char	*strip_line(char *line)
-{
-	char	*start;
-	char	*end;
-
-	if (!line)
-		return (NULL);
-
-	//printf("Stripping line: '%s'\n", line);
-	start = line;
-	while (*start && ft_isspace(*start))
-		start++;
-
-	if (*start == '\0')
-		return (strdup("")); // only spaces
-
-	end = start + ft_strlen(start) - 1;
-	while (end > start && ft_isspace(*end))
-		end--;
-
-	*(end + 1) = '\0';
-
-	return (strdup(start));
-}
-
 
 int	check_color(char *line, t_cub **data, int is_floor)
 {
-	(void)is_floor;
-	(void)data;
-	(void)line;
+	// (void)is_floor;
+	// (void)data;
+	// (void)line;
 	int	count;
 
 	count = 0;
