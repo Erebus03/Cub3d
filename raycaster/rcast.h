@@ -6,15 +6,15 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 19:40:59 by zzin              #+#    #+#             */
-/*   Updated: 2025/10/16 20:35:52 by zzin             ###   ########.fr       */
+/*   Updated: 2025/10/20 20:22:50 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RCAST_H
 #define RCAST_H
 
-#include "../cub.h"
 #include "mlx.h"
+#include "../cub.h"
 
 typedef struct s_mlx
 {
