@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 12:12:16 by araji             #+#    #+#             */
-/*   Updated: 2025/10/27 00:41:18 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/29 00:34:36 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	parse_file(char *filename, t_cub **data)
 {
 	int fd;
 	char *line;
-	
+
 	if (!check_extension(filename))
 		return (0);
 	if (!init_struct(data))

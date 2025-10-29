@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:56 by araji             #+#    #+#             */
-/*   Updated: 2025/10/28 21:38:01 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/29 00:30:34 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(int ac, char **av)
 		return (1);
 	}
 
-	if (parse_file(av[1], &data) == 0)
+	if (!parse_file(av[1], &data))
 	{
 		
 		// free the struct and its members

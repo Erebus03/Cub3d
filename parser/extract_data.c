@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:36:14 by araji             #+#    #+#             */
-/*   Updated: 2025/10/28 21:35:17 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/29 01:34:53 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*strip_line(char *line)
 	if (!line)
 		return (NULL);
 
-	printf("Original line: '%s'\n", line);
+	// printf("Original line: '%s'\n", line);
 	//printf("Stripping line: '%s'\n", line);
 	start = line;
 	while (*start && ft_isspace(*start))
@@ -48,15 +48,13 @@ char	*strip_line(char *line)
 
 int	check_texture(char *line, t_cub **data, t_texture tex_type)
 {
-	// (void)tex_type;
-	// (void)data;
-	// (void)line;
-	int	count = 0;
-	char **split  = ft_split(strip_line(line), ' ', &count);
-	// (void)split;
+	int		count;
+	char	**split;
+	
+	count  = 0;
+	split  = ft_split(strip_line(line), ' ', &count);
 	if (count != 1)
 	{
-		printf("more than one element in this bitch\n");
 		write(2, "Error\nInvalid texture line format\n", 35);
 		while (*split)
 			free(*split++);
@@ -87,38 +85,27 @@ int	get_textures(char *line, t_cub **data)
 
 int	check_color(char *line, t_cub **data, int is_floor)
 {
-	// (void)is_floor;
-	// (void)data;
-	// (void)line;
-	int	count;
+	int		i;
+	int		count;
+	char	**split;
 
+	i = -1;
 	count = 0;
-	char *s = strip_line(line);
-	//printf("Stripped color line: '%s'\n", s);
-	char **split  = ft_split(s, ',', &count);
+	split  = ft_split(strip_line(line), ',', &count);
 	if (count != 3)
 	{
-		write(2, "Error\nInvalid color line format\n", 33);
-		while (*split)
-			free(*split++);
-		return (0);
+		while (*split) {free(*split++);}
+		return (write(2, "Error\nInvalid color line format\n", 33), 0);
 	}
 	if (is_floor)
 	{
-		(*data)->flr_rgb[1] = atoi(strip_line(split[0]));
-		(*data)->flr_rgb[2] = atoi(strip_line(split[1]));
-		(*data)->flr_rgb[3] = atoi(strip_line(split[2]));
+		while (++i < 3)
+			(*data)->flr_rgb[i + 1] = atoi(strip_line(split[i]));
 	} else {
-		(*data)->ceiling_rgb[1] = atoi(strip_line(split[0]));
-		(*data)->ceiling_rgb[2] = atoi(strip_line(split[1]));
-		(*data)->ceiling_rgb[3] = atoi(strip_line(split[2]));
+		while (++i < 3)
+			(*data)->ceiling_rgb[i + 1] = atoi(strip_line(split[i]));
 	}
-
-	//printf("R:%s\nG:%s\nB:%s\n", strip_line(split[0]), strip_line(split[1]), strip_line(split[2]));
-	
-	while (*split)
-		free(*split++);
-	
+	while (*split) {free(*split++);}
 	return (1);
 }
 
