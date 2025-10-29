@@ -6,13 +6,13 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:11:55 by araji             #+#    #+#             */
-/*   Updated: 2025/10/15 20:59:07 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/18 16:45:26 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser/cubparser.h"
+#include "../cubparser.h"
 
-int	found_newline(t_list *node)
+static int	found_newline(t_list *node)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ int	found_newline(t_list *node)
 	return (0);
 }
 
-void	extract(t_list *lst, char **line)
+static void	extract(t_list *lst, char **line)
 {
 	int		i;
 	int		j;
@@ -58,7 +58,7 @@ void	extract(t_list *lst, char **line)
 	(*line)[i] = '\0';
 }
 
-void	clean(t_list **lst)
+static void	clean(t_list **lst)
 {
 	t_list	*lst_last;
 	t_list	*new_start_node;
@@ -87,7 +87,7 @@ void	clean(t_list **lst)
 		free(new_str);
 }
 
-void	create_list(t_list **lst, int fd)
+static void	create_list(t_list **lst, int fd)
 {
 	ssize_t	bytes_read;
 	t_list	*new_node;

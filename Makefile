@@ -1,13 +1,12 @@
 CC= cc
 CFLAGS = -Wall -Wextra -Werror -w
 MLXFLAGS = -lmlx -lXext -lX11
-NAME = cub3d
+NAME = cub3D
 SRC = main.c \
-	$(wildcard parser_utils/*.c) \
 	$(wildcard parser/*.c) \
+	$(wildcard parser/parser_utils/*.c) \
 	$(wildcard raycaster/*.c)
 OBJ = ${SRC:.c=.o}
-
 
 all: $(NAME)
 

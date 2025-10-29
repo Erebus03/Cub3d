@@ -6,11 +6,11 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:11:39 by araji             #+#    #+#             */
-/*   Updated: 2025/10/15 20:58:59 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/17 12:40:40 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../parser/cubparser.h"
+#include "../cubparser.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {
