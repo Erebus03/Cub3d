@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ready_the_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 12:12:16 by araji             #+#    #+#             */
-/*   Updated: 2025/10/29 00:34:36 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/30 00:12:43 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,30 +63,30 @@ int	parse_file(char *filename, t_cub **data)
 		return (0);
 	if (!init_struct(data))
 		return (0);
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (write(2, "Error\nFailed to open file\n", 27), 0);	
-	line = get_next_line(fd);
-	if (!line)
-	{
-		write(2, "Error\nEmpty file\n", 18);
-		// return (close(fd), 0);
-		close(fd);
-		return (0);
-	}
-	while (line)
-	{
-		if (!empty_line(line))
-		{
-			// if (!extract_data(line + skip_leading_whitespace(line), data))
-			if (!extract_data(line, data))
-			{
-				free(line); close(fd); return (0);
-			}
-		}
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
+	//fd = open(filename, O_RDONLY);
+	//if (fd < 0)
+	//	return (write(2, "Error\nFailed to open file\n", 27), 0);	
+	//line = get_next_line(fd);
+	//if (!line)
+	//{
+	//	write(2, "Error\nEmpty file\n", 18);
+	//	// return (close(fd), 0);
+	//	close(fd);
+	//	return (0);
+	//}
+	//while (line)
+	//{
+	//	if (!empty_line(line))
+	//	{
+	//		// if (!extract_data(line + skip_leading_whitespace(line), data))
+	//		if (!extract_data(line, data))
+	//		{
+	//			free(line); close(fd); return (0);
+	//		}
+	//	}
+	//	free(line);
+	//	line = get_next_line(fd);
+	//}
+	//close(fd);
 	return (1);
 }

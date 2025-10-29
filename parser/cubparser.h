@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubparser.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:59 by araji             #+#    #+#             */
-/*   Updated: 2025/10/27 00:41:39 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/30 00:27:04 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,39 +17,7 @@
 #  define BUFFER_SIZE 60
 # endif
 
-# include <string.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-
-typedef enum e_texture
-{
-	NO,
-	SO,
-	WE,
-	EA
-}	t_texture;
-
-typedef enum e_color
-{
-	FULL,
-	RED,
-	GREEN,
-	BLUE
-}	t_color;
-
-typedef struct s_cub
-{
-	char	*textures[4];	// NO, SO, WE, EA
-	int		flr_rgb[4];		// [0] is the whole color, [1] R, [2] G, [3] B
-	int		ceiling_rgb[4];	// [0] is the whole color, [1] R, [2] G, [3] B
-	char	**map;
-	int		mwidth;
-	int		mheight;
-}	t_cub;
-
-
+# include "../cub.h"
 
 int		check_extension(char *filename);
 int 	init_struct(t_cub **data);
