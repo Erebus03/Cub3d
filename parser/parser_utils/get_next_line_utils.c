@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:11:39 by araji             #+#    #+#             */
-/*   Updated: 2025/10/17 12:40:40 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/30 21:03:55 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	ft_lstclear(t_list **lst)
 	while (*lst)
 	{
 		tmp = (*lst)->next;
-		free((*lst)->str);
-		free(*lst);
+		//free((*lst)->str);
+		//free(*lst);
 		*lst = tmp;
 	}
 }
@@ -53,7 +53,7 @@ t_list	*ft_lstnew(char *content)
 {
 	t_list	*new_node;
 
-	new_node = malloc(sizeof(t_list));
+	new_node = save(sizeof(t_list));
 	if (!new_node)
 		return (NULL);
 	new_node->str = content;

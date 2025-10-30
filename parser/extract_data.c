@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:36:14 by araji             #+#    #+#             */
-/*   Updated: 2025/10/29 01:34:53 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/30 20:56:59 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*strip_line(char *line)
 		start++;
 
 	if (*start == '\0')
-		return (strdup("")); // only spaces
+		return (ft_strdup("")); // only spaces
 
 	end = start + ft_strlen(start) - 1;
 	while (end > start && ft_isspace(*end))
@@ -43,7 +43,7 @@ char	*strip_line(char *line)
 
 	*(end + 1) = '\0';
 
-	return (strdup(start));
+	return (ft_strdup(start));
 }
 
 int	check_texture(char *line, t_cub **data, t_texture tex_type)
@@ -56,14 +56,14 @@ int	check_texture(char *line, t_cub **data, t_texture tex_type)
 	if (count != 1)
 	{
 		write(2, "Error\nInvalid texture line format\n", 35);
-		while (*split)
-			free(*split++);
+		//while (*split)
+		//	free(*split++);
 		return (0);
 	}
-	(*data)->textures[tex_type] = strdup(split[0]);		// build
+	(*data)->textures[tex_type] = ft_strdup(split[0]);		// build
 
-	while (*split)
-		free(*split++);
+	//while (*split)
+	//	free(*split++);
 
 	return (1);
 }
@@ -94,7 +94,7 @@ int	check_color(char *line, t_cub **data, int is_floor)
 	split  = ft_split(strip_line(line), ',', &count);
 	if (count != 3)
 	{
-		while (*split) {free(*split++);}
+		//while (*split) {free(*split++);}
 		return (write(2, "Error\nInvalid color line format\n", 33), 0);
 	}
 	if (is_floor)
@@ -105,7 +105,7 @@ int	check_color(char *line, t_cub **data, int is_floor)
 		while (++i < 3)
 			(*data)->ceiling_rgb[i + 1] = atoi(strip_line(split[i]));
 	}
-	while (*split) {free(*split++);}
+	//while (*split) {free(*split++);}
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 10:06:02 by zzin              #+#    #+#             */
-/*   Updated: 2025/10/30 00:23:31 by zzin             ###   ########.fr       */
+/*   Updated: 2025/10/30 20:40:09 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	clear_heap(void)
 {
 	t_heap	*curr;
 
-	if (!cubs || !cubs->heap)
+	if(!cubs)
 		return ;
 	while (cubs->heap)
 	{
@@ -63,6 +63,8 @@ void	clear_heap(void)
 		cubs->heap = cubs->heap->next;
 		free(curr);
 	}
+	free(cubs);
+	cubs = NULL;
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:56 by araji             #+#    #+#             */
-/*   Updated: 2025/10/29 23:57:31 by zzin             ###   ########.fr       */
+/*   Updated: 2025/10/30 21:36:18 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ int main(int ac, char **av)
 		write(2, "Error\nInvalid number of arguments\n", 35);
 		return (1);
 	}
-
 	if (!parse_file(av[1], &cubs))
 	{
-		
-		// free the struct and its members
+		clear_heap();
 		return (1);
 	}
-
+	clear_heap();
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:11:55 by araji             #+#    #+#             */
-/*   Updated: 2025/10/18 16:45:26 by araji            ###   ########.fr       */
+/*   Updated: 2025/10/30 21:03:48 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	extract(t_list *lst, char **line)
 	i = get_line_len(lst);
 	if (!i)
 		return ;
-	*line = malloc(i + 1);
+	*line = save(i + 1);
 	if (!*line)
 		return ;
 	i = 0;
@@ -83,8 +83,8 @@ static void	clean(t_list **lst)
 		new_start_node = ft_lstnew(new_str);
 		lst_add_back(lst, new_start_node);
 	}
-	else
-		free(new_str);
+	//else
+	//	free(new_str);
 }
 
 static void	create_list(t_list **lst, int fd)
@@ -96,14 +96,14 @@ static void	create_list(t_list **lst, int fd)
 	while (found_newline(*lst) == 0)
 	{
 		new_node = ft_lstnew(NULL);
-		new_node->str = malloc((size_t)BUFFER_SIZE + 1);
+		new_node->str = save((size_t)BUFFER_SIZE + 1);
 		if (!new_node)
 			return ;
 		bytes_read = read(fd, new_node->str, (size_t)BUFFER_SIZE);
 		if (bytes_read == -1 || bytes_read == 0)
 		{
-			free(new_node->str);
-			free(new_node);
+			//free(new_node->str);
+			//free(new_node);
 			return ;
 		}
 		new_node->str[bytes_read] = '\0';
@@ -119,7 +119,7 @@ char	*get_next_line(int fd)
 	extracted_line = NULL;
 	if (fd < 0 || (size_t)BUFFER_SIZE <= 0)
 	{
-		free(head);
+		//free(head);
 		return (NULL);
 	}
 	create_list(&head, fd);
