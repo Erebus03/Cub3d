@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubparser.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:59 by araji             #+#    #+#             */
-/*   Updated: 2025/10/30 00:27:04 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/01 04:28:46 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int		ft_strcmp(char *s1, char *s2);
 int		empty_line(char *line);
 char	**ft_split(char const *s, char c, int *count);
 
+
+char	*ft_strdup(const char *s);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 /* getnextline */
 

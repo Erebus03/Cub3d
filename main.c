@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:56 by araji             #+#    #+#             */
-/*   Updated: 2025/10/30 21:36:18 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/01 04:26:20 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int main(int ac, char **av)
 	}
 	if (!parse_file(av[1], &cubs))
 	{
-		clear_heap();
-		return (1);
+		return (clear_heap(), 1);
 	}
 	clear_heap();
 	return (0);
