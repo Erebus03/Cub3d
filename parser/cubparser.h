@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:59 by araji             #+#    #+#             */
-/*   Updated: 2025/11/01 04:28:46 by araji            ###   ########.fr       */
+/*   Updated: 2025/11/04 20:50:20 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		parse_file(char *filename, t_cub **data);
 
 int		get_textures(char *line, t_cub **data);
 int		get_colors(char *line, t_cub **data);
-int		get_map(char *line, t_cub **data);
+int		collect_map(char *line, t_cub **data);
 int 	extract_data(char *line, t_cub **data);
 
 

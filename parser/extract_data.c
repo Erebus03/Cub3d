@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:36:14 by araji             #+#    #+#             */
-/*   Updated: 2025/10/30 20:56:59 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/04 21:49:24 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,25 +119,75 @@ int	get_colors(char *line, t_cub **data)
 		return (write(2, "Error\nInvalid color identifier\n", 32), 0);
 }
 
-int	get_map(char *line, t_cub **data)
+int validate_map_chars(char *line, int width)
 {
-	(void)data;
-	(void)line;
-	write(2, "Parsing map line\n", 18);
-	// append line to map
+	int i;
+
+	i = -1;
+	// printf("Validating map line: '%s'\n\n", line);
+	while (line[++i])
+	{
+		//change to space
+		if (line[i] != '.' && line[i] != '0' && line[i] != '1'
+			&& line[i] != 'N' && line[i] != 'S'
+			&& line[i] != 'E' && line[i] != 'W')
+		{
+			write(2, "Error\nInvalid character in map\n", 32);
+			return (0);
+		}
+	}
+	// pad_line(&line, width);
+	return (1);
+}
+
+static char	**realloc_map(char **old, int old_size, int new_size)
+{
+	char	**new;
+	int		i;
+
+	new = save(sizeof(char *) * (new_size + 1));
+	if (!new)
+		return (NULL);
+	i = -1;
+	while (++i < old_size)
+		new[i] = old[i];
+	new[i] = NULL;
+	//garbage collector handels prev allocated map lines, so no need to free them
+	return (new);
+}
+
+
+int	collect_map(char *line, t_cub **data)
+{
+
+	(*data)->map = realloc_map((*data)->map, (*data)->mheight, (*data)->mheight + 2);
+	if (!(*data)->map)
+		return (write(2, "Error\nMemory allocation failed\n", 32), 0);
+	
+	(*data)->map[(*data)->mheight] = ft_strdup(line);
+	(*data)->map[(*data)->mheight + 1] = NULL;
+	
+	(*data)->mheight += 1;
+	if ((int)ft_strlen(line) > (*data)->mwidth)
+		(*data)->mwidth = ft_strlen(line);
+
 	return (1);
 }
 
 int extract_data(char *line, t_cub **data)
 {
+	
 	if (line[0] == 'N' || line[0] == 'S' || line[0] == 'W' || line[0] == 'E')
 		return (get_textures(line, data));
 	else if (line[0] == 'F' || line[0] == 'C')
 		return (get_colors(line, data));
 	else if (data_collected(data) &&
-		(line[0] == '1' || line[0] == '0' || line[0] == ' '))
+		(line[0] == '1' || line[0] == '0' || line[0] == '.'))//change to space
 	{
-		return (get_map(line, data));
+		if (validate_map_chars(line, (*data)->mwidth))
+			return (collect_map(line, data));
+		else
+			return (0);
 	}
 	else
 		return (write(2, "Error\nInvalid line in file config part\n", 40), 0);

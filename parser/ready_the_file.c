@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ready_the_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 12:12:16 by araji             #+#    #+#             */
-/*   Updated: 2025/10/30 21:08:03 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/04 21:52:12 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ int init_struct(t_cub **data)
 	return (1);
 }
 
+int	verify_map_boundaries(t_cub **data)
+{
+	
+
+	return (1);
+}
+
 int	parse_file(char *filename, t_cub **data)
 {
 	int fd;
@@ -70,23 +77,22 @@ int	parse_file(char *filename, t_cub **data)
 	line = get_next_line(fd);
 	if (!line)
 	{
-		write(2, "Error\nEmpty file\n", 18);
-		// return (close(fd), 0);
-		close(fd);
-		return (0);
+		return (write(2, "Error\nEmpty file\n", 18), close(fd), 0);
 	}
 	while (line)
 	{
 		if (!empty_line(line))
 		{
-			// if (!extract_data(line + skip_leading_whitespace(line), data))
 			if (!extract_data(line, data))
 			{
-				close(fd); return (0);
+				return (close(fd), 0);
 			}
 		}
 		line = get_next_line(fd);
 	}
+	if (!verify_map_boundaries(data))
+		return (close(fd), 0);
+	
 	close(fd);
 	return (1);
 }

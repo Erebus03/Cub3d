@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:33:27 by araji             #+#    #+#             */
-/*   Updated: 2025/10/27 21:33:48 by araji            ###   ########.fr       */
+/*   Updated: 2025/11/03 20:55:36 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	empty_line(char *line)
 {
 	while (*line == ' ' || *line == '\t')
 		line++;
-	if (*line == '\n')
+	if (*line == '\0' || *line == EOF)
 		return (1);
 	return (0);
 }
