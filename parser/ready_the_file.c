@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 12:12:16 by araji             #+#    #+#             */
-/*   Updated: 2025/11/05 11:57:17 by araji            ###   ########.fr       */
+/*   Updated: 2025/11/05 14:40:39 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static int	verify_map_boundaries(t_cub **data)
 	int y = 0, x = 0;
 
 	// should pad the lines first so i can navigate freely to check for the map boundaries
-	
+
 	if (!pad_map_lines(data))
 		return (0);
 	while (y < (*data)->mheight)
