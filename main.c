@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:56 by araji             #+#    #+#             */
-/*   Updated: 2025/11/04 21:51:29 by araji            ###   ########.fr       */
+/*   Updated: 2025/11/05 10:59:06 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ int main(int ac, char **av)
 	}
 	
 	
-	// int i = 0;
-	// for (i = 0; i < cubs->mheight; i++)
-	// {
-	// 	printf("Map line %d: '%s'\n", i, cubs->map[i]);
-	// }
+	int i = 0;
+	for (i = 0; i < cubs->mheight; i++)
+	{
+		printf("Map line %d:	'%s'\n", i, cubs->map[i]);
+	}
 	printf("\nheight: %d, width: %d\n", cubs->mheight, cubs->mwidth);
 
-
+	printf("\nPlayer position: (%d, %d)\n", cubs->player_pos[0], cubs->player_pos[1]);
 	clear_heap();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:36:14 by araji             #+#    #+#             */
-/*   Updated: 2025/11/04 21:49:24 by araji            ###   ########.fr       */
+/*   Updated: 2025/11/05 11:35:53 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	get_colors(char *line, t_cub **data)
 		return (write(2, "Error\nInvalid color identifier\n", 32), 0);
 }
 
-int validate_map_chars(char *line, int width)
+int validate_map_chars(char *line, t_cub **data)
 {
 	int i;
 
@@ -127,10 +127,14 @@ int validate_map_chars(char *line, int width)
 	// printf("Validating map line: '%s'\n\n", line);
 	while (line[++i])
 	{
+		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+		{
+			// i didnt really think this through, mach ikhdem ghila b3da
+			(*data)->player_pos[1] = i;
+			(*data)->player_pos[0] = (*data)->mheight + 1;
+		}
 		//change to space
-		if (line[i] != '.' && line[i] != '0' && line[i] != '1'
-			&& line[i] != 'N' && line[i] != 'S'
-			&& line[i] != 'E' && line[i] != 'W')
+		else if (line[i] != '.' && line[i] != '0' && line[i] != '1')
 		{
 			write(2, "Error\nInvalid character in map\n", 32);
 			return (0);
@@ -184,7 +188,7 @@ int extract_data(char *line, t_cub **data)
 	else if (data_collected(data) &&
 		(line[0] == '1' || line[0] == '0' || line[0] == '.'))//change to space
 	{
-		if (validate_map_chars(line, (*data)->mwidth))
+		if (validate_map_chars(line, data))
 			return (collect_map(line, data));
 		else
 			return (0);
