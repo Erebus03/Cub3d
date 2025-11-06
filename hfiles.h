@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 00:46:20 by zzin              #+#    #+#             */
-/*   Updated: 2025/11/05 11:24:51 by araji            ###   ########.fr       */
+/*   Updated: 2025/11/06 11:36:14 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ typedef struct s_cub
 	int		flr_rgb[4];		// [0] is the whole color, [1] R, [2] G, [3] B
 	int		ceiling_rgb[4];	// [0] is the whole color, [1] R, [2] G, [3] B
 	char	**map;
-	int		player_pos[2]; // y x 
+	int		player_pos[2]; // y x
+	int		plyr_count;
 	int		mwidth;
 	int		mheight;
 	t_heap	*heap;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:56:41 by araji             #+#    #+#             */
-/*   Updated: 2025/10/30 20:32:45 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/06 17:42:03 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	**allocate_and_fill(char **cells, const char *s, int len, int k)
 	j = 0;
 	cells[k] = (char *)save((len + 1) * sizeof(char));
 	if (!cells[k])
-		return NULL;
+		return (NULL);
 	while (j < len)
 	{
 		if (s[j] != '\n')
