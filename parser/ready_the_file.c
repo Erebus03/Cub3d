@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ready_the_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 12:12:16 by araji             #+#    #+#             */
-/*   Updated: 2025/11/06 18:06:08 by araji            ###   ########.fr       */
+/*   Updated: 2025/11/07 23:05:18 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubparser.h"
 
-int	loop_over_lines(t_cub **data, char *line, int fd)
+int	loop_over_lines(t_cub **data, int fd)
 {
 	char	*line;
 
@@ -57,6 +57,8 @@ int	init_struct(t_cub **data)
 	if (!(*data))
 		return (write(2, "Error\nMemory allocation failed\n", 32), 0);
 	(*data)->heap = NULL;
+	(*data)->map = NULL;
+	(*data)->rcast = NULL;
 	i = -1;
 	while (++i < 4)
 		(*data)->textures[i] = NULL;
@@ -66,7 +68,6 @@ int	init_struct(t_cub **data)
 		(*data)->flr_rgb[i] = -1;
 		(*data)->ceiling_rgb[i] = -1;
 	}
-	(*data)->map = NULL;
 	(*data)->mwidth = 0;
 	(*data)->mheight = 0;
 	(*data)->player_pos[0] = -1;

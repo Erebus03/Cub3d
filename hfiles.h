@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hfiles.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
+/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 00:46:20 by zzin              #+#    #+#             */
-/*   Updated: 2025/11/06 11:36:14 by araji            ###   ########.fr       */
+/*   Updated: 2025/11/07 22:38:10 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,20 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	int		x;
+	int		y;
+	void	*win;
+}	t_mlx;
+
+typedef struct s_rcast
+{
+	t_mlx *mlx;
+
+}	t_rcast;
 
 typedef struct hp
 {
@@ -51,6 +65,7 @@ typedef struct s_cub
 	int		plyr_count;
 	int		mwidth;
 	int		mheight;
+	t_rcast	*rcast;
 	t_heap	*heap;
 }	t_cub;
 
