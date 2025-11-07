@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:03:00 by araji             #+#    #+#             */
-/*   Updated: 2025/11/06 18:03:19 by araji            ###   ########.fr       */
+/*   Updated: 2025/11/07 23:32:41 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,12 @@ int	ft_isspace(char c)
 int	is_closed(t_cub **data, int y, int x)
 {
 	//change bach '.' to space
+	if (x == 0 || y == 0 || x == (*data)->mwidth - 1
+		|| y == (*data)->mheight - 1)
+	{
+		if ((*data)->map[y][x] == '0')
+			return (0);
+	}
 	if (((*data)->map[y][x] == '0')
 		&& ((*data)->map[y - 1][x] == '.' || (*data)->map[y + 1][x] == '.'
 		|| (*data)->map[y][x - 1] == '.' || (*data)->map[y][x + 1] == '.'))
