@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   rcast.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 19:39:33 by zzin              #+#    #+#             */
-/*   Updated: 2025/10/30 18:34:46 by zzin             ###   ########.fr       */
+/*   Created: 2025/10/16 19:40:59 by zzin              #+#    #+#             */
+/*   Updated: 2025/11/07 19:13:38 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rcast.h"
+#ifndef RCAST_H
+#define RCAST_H
 
-void	init_mlx(t_mlx *m)
-{
-	m->mlx = mlx_init();
-	mlx_get_screen_size(m->mlx, &m->x, &m->y);
-	//m->win = mlx_new_window();
-}
+#include "../cub.h"
 
-void	init_cub(void)
-{
-	t_mlx	m;
-	
-	init_mlx(&m);
-}
+void	init_cub(void);
+void	*init_mlx(void);
+
+#endif

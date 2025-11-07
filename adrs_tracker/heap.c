@@ -6,7 +6,7 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 10:06:02 by zzin              #+#    #+#             */
-/*   Updated: 2025/10/30 20:40:09 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/07 18:43:30 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,33 @@ void	*save(size_t size)
 //	}
 //}
 
+void	clear_rcast(t_rcast *rc)
+{
+	t_mlx	*m;
+
+	if(!rc)
+		return ;
+	if(!rc->mlx)
+		return ;
+	m = rc->mlx;
+	//if(m->mlx)
+	//	mlx_destroy_display(m->mlx);
+	return ;
+}
+
 void	clear_heap(void)
 {
 	t_heap	*curr;
 
 	if(!cubs)
 		return ;
+	if(!cubs->heap)
+	{
+		free(cubs);
+		cubs = NULL;
+		return ;
+	}
+	//clear_rcast(cubs->rcast);
 	while (cubs->heap)
 	{
 		curr = cubs->heap;
