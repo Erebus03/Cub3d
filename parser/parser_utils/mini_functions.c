@@ -1,16 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_libc.c                                        :+:      :+:    :+:   */
+/*   mini_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 11:33:27 by araji             #+#    #+#             */
-/*   Updated: 2025/10/27 21:33:48 by araji            ###   ########.fr       */
+/*   Created: 2025/11/06 18:03:00 by araji             #+#    #+#             */
+/*   Updated: 2025/11/06 18:03:19 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cubparser.h"
+
+int	create_rgb(int r, int g, int b)
+{
+	return ((r << 16) | (g << 8) | b);
+}
 
 int	skip_leading_whitespace(char *line)
 {
@@ -26,14 +31,14 @@ int	data_collected(t_cub **data)
 {
 	int	i;
 
-	//return (1); // for now
 	i = -1;
 	while (++i < 4)
 	{
 		if ((*data)->textures[i] == NULL)
 			return (0);
 	}
-	i = 0; // it'll start from 1 to 3 cuz 0 is the color value not the RGB
+	// it'll start from 1 to 3 cuz 0 is the color value not the RGB
+	i = 0;
 	while (++i < 4)
 	{
 		if ((*data)->flr_rgb[i] == -1 || (*data)->ceiling_rgb[i] == -1)
@@ -42,31 +47,28 @@ int	data_collected(t_cub **data)
 	return (1);
 }
 
-size_t	ft_strlen(char *filename)
-{
-	size_t	len;
-
-	len = 0;
-	while (filename[len])
-		len++;
-	return (len);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	while (*s1 && (*s1 == *s2))
-	{
-		s1++;
-		s2++;
-	}
-	return (*(unsigned char *)s1 - *(unsigned char *)s2);
-}
-
 int	empty_line(char *line)
 {
 	while (*line == ' ' || *line == '\t')
 		line++;
-	if (*line == '\n')
+	if (*line == '\0' || *line == EOF)
 		return (1);
 	return (0);
+}
+
+int	ft_isspace(char c)
+{
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
+}
+
+int	is_closed(t_cub **data, int y, int x)
+{
+	//change bach '.' to space
+	if (((*data)->map[y][x] == '0')
+		&& ((*data)->map[y - 1][x] == '.' || (*data)->map[y + 1][x] == '.'
+		|| (*data)->map[y][x - 1] == '.' || (*data)->map[y][x + 1] == '.'))
+		return (0);
+	return (1);
 }

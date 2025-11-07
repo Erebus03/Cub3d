@@ -3,75 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   extract_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:36:14 by araji             #+#    #+#             */
-/*   Updated: 2025/10/30 20:56:59 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/06 17:51:38 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubparser.h"
 
-
-int	ft_isspace(char c)
-{
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
-}
-
-char	*strip_line(char *line)
-{
-	char	*start;
-	char	*end;
-
-	if (!line)
-		return (NULL);
-
-	// printf("Original line: '%s'\n", line);
-	//printf("Stripping line: '%s'\n", line);
-	start = line;
-	while (*start && ft_isspace(*start))
-		start++;
-
-	if (*start == '\0')
-		return (ft_strdup("")); // only spaces
-
-	end = start + ft_strlen(start) - 1;
-	while (end > start && ft_isspace(*end))
-		end--;
-
-	*(end + 1) = '\0';
-
-	return (ft_strdup(start));
-}
-
 int	check_texture(char *line, t_cub **data, t_texture tex_type)
 {
 	int		count;
 	char	**split;
-	
-	count  = 0;
-	split  = ft_split(strip_line(line), ' ', &count);
+
+	count = 0;
+	split = ft_split(strip_line(line), ' ', &count);
 	if (count != 1)
 	{
 		write(2, "Error\nInvalid texture line format\n", 35);
-		//while (*split)
-		//	free(*split++);
 		return (0);
 	}
-	(*data)->textures[tex_type] = ft_strdup(split[0]);		// build
-
-	//while (*split)
-	//	free(*split++);
-
+	(*data)->textures[tex_type] = ft_strdup(split[0]);
 	return (1);
 }
 
 int	get_textures(char *line, t_cub **data)
 {
 	if (line[0] == 'N' && line[1] == 'O')
-		return (check_texture(line + 2, data, NO)); 
+		return (check_texture(line + 2, data, NO));
 	else if (line[0] == 'S' && line[1] == 'O')
 		return (check_texture(line + 2, data, SO));
 	else if (line[0] == 'W' && line[1] == 'E')
@@ -82,7 +42,6 @@ int	get_textures(char *line, t_cub **data)
 		return (write(2, "Error\nInvalid texture identifier\n", 34), 0);
 }
 
-
 int	check_color(char *line, t_cub **data, int is_floor)
 {
 	int		i;
@@ -91,21 +50,21 @@ int	check_color(char *line, t_cub **data, int is_floor)
 
 	i = -1;
 	count = 0;
-	split  = ft_split(strip_line(line), ',', &count);
+	split = ft_split(strip_line(line), ',', &count);
 	if (count != 3)
 	{
-		//while (*split) {free(*split++);}
 		return (write(2, "Error\nInvalid color line format\n", 33), 0);
 	}
 	if (is_floor)
 	{
 		while (++i < 3)
 			(*data)->flr_rgb[i + 1] = atoi(strip_line(split[i]));
-	} else {
+	}
+	else
+	{
 		while (++i < 3)
 			(*data)->ceiling_rgb[i + 1] = atoi(strip_line(split[i]));
 	}
-	//while (*split) {free(*split++);}
 	return (1);
 }
 
@@ -119,25 +78,27 @@ int	get_colors(char *line, t_cub **data)
 		return (write(2, "Error\nInvalid color identifier\n", 32), 0);
 }
 
-int	get_map(char *line, t_cub **data)
-{
-	(void)data;
-	(void)line;
-	write(2, "Parsing map line\n", 18);
-	// append line to map
-	return (1);
-}
-
-int extract_data(char *line, t_cub **data)
+/*
+	Note: FOR THE STRIP LINE FUNCTION
+	if the line has only spaces, split a valid pointer pointing to
+	an empty string, meaning the texture path is valid but missing,
+	in this case the rayceter function is what should throw an error later
+		because it didnt find the texture file.
+	FHEMTI? HH
+*/
+int	extract_data(char *line, t_cub **data)
 {
 	if (line[0] == 'N' || line[0] == 'S' || line[0] == 'W' || line[0] == 'E')
 		return (get_textures(line, data));
 	else if (line[0] == 'F' || line[0] == 'C')
 		return (get_colors(line, data));
-	else if (data_collected(data) &&
-		(line[0] == '1' || line[0] == '0' || line[0] == ' '))
+	else if (data_collected(data) //change to space
+		&& (line[0] == '1' || line[0] == '0' || line[0] == '.'))
 	{
-		return (get_map(line, data));
+		if (validate_map_chars(line, data))
+			return (collect_map(line, data));
+		else
+			return (0);
 	}
 	else
 		return (write(2, "Error\nInvalid line in file config part\n", 40), 0);

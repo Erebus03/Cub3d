@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 12:11:55 by araji             #+#    #+#             */
-/*   Updated: 2025/10/30 21:03:48 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/03 21:08:22 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ static int	found_newline(t_list *node)
 
 static void	extract(t_list *lst, char **line)
 {
-	int		i;
-	int		j;
-
+	int (i), (j);
 	if (!lst)
 		return ;
 	i = get_line_len(lst);
@@ -52,7 +50,13 @@ static void	extract(t_list *lst, char **line)
 	{
 		j = 0;
 		while (lst->str[j] && j < lst->len)
-			(*line)[i++] = lst->str[j++];
+		{
+			if (lst->str[j] == '\n')
+				(*line)[i++] = '\0';
+			else
+				(*line)[i++] = lst->str[j];
+			j++;
+		}
 		lst = lst->next;
 	}
 	(*line)[i] = '\0';

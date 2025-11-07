@@ -3,14 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ready_the_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 12:12:16 by araji             #+#    #+#             */
-/*   Updated: 2025/10/30 21:08:03 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/06 18:06:08 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubparser.h"
+
+int	loop_over_lines(t_cub **data, char *line, int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	if (!line)
+	{
+		write(2, "Error\nEmpty file\n", 18);
+		close(fd);
+		return (0);
+	}
+	while (line)
+	{
+		if (!empty_line(line))
+		{
+			if (!extract_data(line, data))
+				return (0);
+		}
+		line = get_next_line(fd);
+	}
+	return (1);
+}
 
 int	check_extension(char *filename)
 {
@@ -25,19 +48,14 @@ int	check_extension(char *filename)
 	return (1);
 }
 
-int init_struct(t_cub **data)
+int	init_struct(t_cub **data)
 {
 	int	i;
 
-	// allocate memory for the struct
-	// init that shiit
-
+	//save?
 	(*data) = malloc(sizeof(t_cub));
 	if (!(*data))
-	{
-		write(2, "Error\nMemory allocation failed\n", 32);
-		return (0);
-	}
+		return (write(2, "Error\nMemory allocation failed\n", 32), 0);
 	(*data)->heap = NULL;
 	i = -1;
 	while (++i < 4)
@@ -47,18 +65,19 @@ int init_struct(t_cub **data)
 	{
 		(*data)->flr_rgb[i] = -1;
 		(*data)->ceiling_rgb[i] = -1;
-	}	
+	}
 	(*data)->map = NULL;
 	(*data)->mwidth = 0;
 	(*data)->mheight = 0;
-	
+	(*data)->player_pos[0] = -1;
+	(*data)->player_pos[1] = -1;
+	(*data)->plyr_count = 0;
 	return (1);
 }
 
 int	parse_file(char *filename, t_cub **data)
 {
-	int fd;
-	char *line;
+	int		fd;
 
 	if (!check_extension(filename))
 		return (0);
@@ -66,27 +85,14 @@ int	parse_file(char *filename, t_cub **data)
 		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (write(2, "Error\nFailed to open file\n", 27), 0);	
-	line = get_next_line(fd);
-	if (!line)
-	{
-		write(2, "Error\nEmpty file\n", 18);
-		// return (close(fd), 0);
-		close(fd);
-		return (0);
-	}
-	while (line)
-	{
-		if (!empty_line(line))
-		{
-			// if (!extract_data(line + skip_leading_whitespace(line), data))
-			if (!extract_data(line, data))
-			{
-				close(fd); return (0);
-			}
-		}
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (1);
+		return (write(2, "Error\nFailed to open file\n", 27), 0);
+	if (!loop_over_lines(data, fd))
+		return (close(fd), 0);
+	if (!verify_map_boundaries(data))
+		return (close(fd), 0);
+	(*data)->ceiling_rgb[0] = create_rgb((*data)->ceiling_rgb[1],
+			(*data)->ceiling_rgb[2], (*data)->ceiling_rgb[3]);
+	(*data)->flr_rgb[0] = create_rgb((*data)->flr_rgb[1],
+			(*data)->flr_rgb[2], (*data)->flr_rgb[3]);
+	return (close(fd), 1);
 }
