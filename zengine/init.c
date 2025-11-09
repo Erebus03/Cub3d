@@ -6,7 +6,7 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 19:39:33 by zzin              #+#    #+#             */
-/*   Updated: 2025/11/07 21:27:36 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/09 18:19:12 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	*init_mlx(void)
 	t_mlx	*m;
 	void	*mlxp;
 
-	//mlxp = mlx_init();
-	//if(!mlxp)
-	//	return (NULL);
-	//m = save(sizeof(t_mlx));
-	//m->mlx = mlxp;
+	mlxp = mlx_init();
+	if(!mlxp)
+		return (NULL);
+	m = save(sizeof(t_mlx));
+	m->mlx = mlxp;
 	//new_node(&cubs->heap, m->mlx);
 	//mlx_get_screen_size(m->mlx, &m->x, &m->y);
 	//m->win = mlx_new_window();
@@ -81,20 +81,10 @@ void	init_cub(void)
 
 	if(!cubs || cubs->rcast)
 		return ;
-	cubs->rcast = save(sizeof(t_rcast));
-	char	*map[] = {"1111111",
-					  "1000001",
-				 	  "10000P1",
-				 	  "1000001",
-					  "1111111",
-				  NULL,
-				};
-	
-	cubs->map = map;
-	prmap(map);
-	//m = init_mlx();
-	//if(!m)
-	//	return ;
+	prmap(cubs->map);
+	m = init_mlx();
+	if(!m)
+		return ;
 	//cubs->rcast->mlx = m;
 	return ;
 }

@@ -1,6 +1,6 @@
 CC= cc
 CFLAGS = -Wall -Wextra -Werror -w
-MLXFLAGS = -lXext -lX11
+MLXFLAGS = -lmlx -lXext -lX11
 NAME = cub3D
 SRC = main.c \
 	$(wildcard adrs_tracker/*.c) \
