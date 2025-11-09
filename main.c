@@ -6,7 +6,7 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 23:57:56 by araji             #+#    #+#             */
-/*   Updated: 2025/11/09 18:20:10 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/09 21:11:42 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int main(int ac, char **av)
 //	printf("Ceiling RGB: %d, %d, %d\n", cubs->ceiling_rgb[RED], cubs->ceiling_rgb[GREEN], cubs->ceiling_rgb[BLUE]);
 //	printf("Floor Color Value:	%d (hex:	%x	%X)\n", cubs->flr_rgb[FULL], cubs->flr_rgb[FULL], cubs->flr_rgb[FULL]);
 //	printf("Ceiling Color Value:	%d (hex:	%x	%X)\n", cubs->ceiling_rgb[FULL], cubs->ceiling_rgb[FULL], cubs->ceiling_rgb[FULL]);
-	init_cub();
+	//init_cub();
 	clear_heap();
 	return (0);
 }

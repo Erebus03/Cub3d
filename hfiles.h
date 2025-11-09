@@ -6,7 +6,7 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 00:46:20 by zzin              #+#    #+#             */
-/*   Updated: 2025/11/07 22:38:10 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/09 18:47:02 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,15 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include "mlx.h"
+# include <X11/keysym.h>
 
-typedef struct s_mlx
+typedef struct s_rcast
 {
 	void	*mlx;
 	int		x;
 	int		y;
 	void	*win;
-}	t_mlx;
-
-typedef struct s_rcast
-{
-	t_mlx *mlx;
 
 }	t_rcast;
 
@@ -66,6 +63,10 @@ typedef struct s_cub
 	int		mwidth;
 	int		mheight;
 	t_rcast	*rcast;
+	int key_w;
+    int key_s;
+    int key_a;
+    int key_d;
 	t_heap	*heap;
 }	t_cub;
 

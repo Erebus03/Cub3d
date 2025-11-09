@@ -6,27 +6,11 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 19:39:33 by zzin              #+#    #+#             */
-/*   Updated: 2025/11/09 18:19:12 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/09 21:12:12 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rcast.h"
-
-void	*init_mlx(void)
-{
-	t_mlx	*m;
-	void	*mlxp;
-
-	mlxp = mlx_init();
-	if(!mlxp)
-		return (NULL);
-	m = save(sizeof(t_mlx));
-	m->mlx = mlxp;
-	//new_node(&cubs->heap, m->mlx);
-	//mlx_get_screen_size(m->mlx, &m->x, &m->y);
-	//m->win = mlx_new_window();
-	return m;
-}
 
 int	inword(char *word, char c)
 {
@@ -57,7 +41,7 @@ void	*prmap(char **map)
 		c = 0;
 		while (map[a][c])
 		{
-			if(map[a][c] == 'P')
+			if(map[a][c] == 'N')
 				p = 1;
 			write(1, " ", 1);
 			write(1, &map[a][c], 1);
@@ -75,16 +59,83 @@ void	*prmap(char **map)
 	return p;
 }
 
+void	draw_minimap(t_cub *c)
+{
+	if(c->rcast->mlx)
+		return ;
+	//while (condition)
+	//{
+	//	/* code */
+	//}
+	
+}
+
+int	close_window(t_cub	*c)
+{
+	mlx_destroy_window(c->rcast->mlx, c->rcast->win);
+	mlx_destroy_display(c->rcast->mlx);
+	free(c->rcast->mlx);
+	clear_heap();
+    exit(0);
+    return 0;
+}
+
+int update(t_cub *c)
+{
+    if (c->key_w) printf("w\n");
+    //if (c->key_s) c->py += speed;
+    //if (c->key_a) c->px -= speed;
+    //if (c->key_d) c->px += speed;
+
+    //clear_image(c);          // wipe old frame
+    //drawplayer(c);           // draw player into image
+    //mlx_put_image_to_window(c->mlx, c->win, c->img, 0, 0); // display whole frame
+    return (0);
+}
+
+int key_press(int key, t_cub *c)
+{
+    if (key == XK_Escape) // ESC
+        return close_window(c);
+    if (key == XK_w) c->key_w = 1;
+    return (0);
+}
+
+int key_release(int key, t_cub *c)
+{
+    if (key == XK_w) c->key_w = 0;
+    return (0);
+}
+
+void	init_mlx(t_cub *c)
+{
+	void	*m;
+
+	m = mlx_init();
+	if(!m)
+		return ;
+	c->rcast->mlx = m;
+	c->rcast->win = mlx_new_window(m, 1920, 1080, "cubzz");
+	if(!c->rcast->win)
+		return ;
+	mlx_hook(c->rcast->win, 2, 1L<<0, key_press, c);
+	mlx_hook(c->rcast->win, 3, 1L<<1, key_release, c);
+	mlx_hook(c->rcast->win, 17, 0, close_window, c);
+	mlx_loop_hook(c->rcast->mlx, update, c);
+	draw_minimap(c);
+	mlx_loop(c->rcast->mlx);
+}
+
 void	init_cub(void)
 {
-	t_mlx	*m;
-
 	if(!cubs || cubs->rcast)
 		return ;
 	prmap(cubs->map);
-	m = init_mlx();
-	if(!m)
-		return ;
-	//cubs->rcast->mlx = m;
+	cubs->rcast = save(sizeof(t_rcast));
+	cubs->key_w = 0;
+	cubs->key_s = 0;
+	cubs->key_a = 0;
+	cubs->key_d = 0;
+	init_mlx(cubs);
 	return ;
 }
