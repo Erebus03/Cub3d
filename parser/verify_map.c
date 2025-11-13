@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 17:44:04 by araji             #+#    #+#             */
-/*   Updated: 2025/11/06 18:05:55 by araji            ###   ########.fr       */
+/*   Updated: 2025/11/13 18:12:36 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ int	validate_map_chars(char *line, t_cub **data)
 			(*data)->player_pos[0] = (*data)->mheight;
 		}
 		//change to space
-		else if (line[i] != '.' && line[i] != '0' && line[i] != '1')
+		else if (line[i] != ' ' && line[i] != '0' && line[i] != '1')
 		{
 			write(2, "Error\nInvalid character in map\n", 32);
+			printf("Invalid char: %c\n", line[i]);
 			return (0);
 		}
 	}
@@ -56,7 +57,7 @@ int	pad_map_lines(t_cub **data)
 				return (0);
 			ft_memcpy(newline, (*data)->map[i], linelen);
 			while (linelen < width)
-				newline[linelen++] = '.';
+				newline[linelen++] = ' ';
 			newline[width] = '\0';
 			(*data)->map[i] = newline;
 		}
