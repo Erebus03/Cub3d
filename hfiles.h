@@ -6,7 +6,7 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 00:46:20 by zzin              #+#    #+#             */
-/*   Updated: 2025/11/09 18:47:02 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/12 17:31:49 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ typedef struct s_rcast
 	void	*mlx;
 	int		x;
 	int		y;
+	int		sq_size;
+	int		psize;
+	int		psquarex;
+	int		psquarey;
+	int		px;
+	int		py;
+	float	fx;//-1 -0.1 0 0.9  1
+	float	fy;// 1
 	void	*win;
 
 }	t_rcast;

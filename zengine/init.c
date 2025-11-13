@@ -6,7 +6,7 @@
 /*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 19:39:33 by zzin              #+#    #+#             */
-/*   Updated: 2025/11/09 21:24:45 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/12 18:09:47 by zzin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,113 @@ void	*prmap(char **map)
 	return p;
 }
 
-void	draw_minimap(t_cub *c)
+void	square(t_rcast *r, int x, int y, int color)
 {
-	if(c->rcast->mlx)
-		return ;
-	int x = 0;
-	int y = 0;
+	int lx = x;
+	int ly = y;
 
-	while (x <= 1920)
+	int w = 0;
+	int h = 0;
+	while (w <= r->sq_size)
 	{
-		y = 0;
-		while(y <= 1080)
+		ly = y;
+		h = 0;
+		while (h <= r->sq_size)
 		{
-			y++;
+			mlx_pixel_put(r->mlx, r->win, lx, ly, color);
+			ly++;
+			h++;
 		}
-		x++;
+		lx++;
+		w++;
 	}
 	
+}
+
+void	spawn_player(t_cub *c, int x, int y)
+{
+	c->rcast->psquarex = x;
+	c->rcast->psquarey = y;
+	c->rcast->px = x + ((c->rcast->sq_size - c->rcast->psize) / 2);
+	c->rcast->py = y + ((c->rcast->sq_size - c->rcast->psize) / 2);
+	c->rcast->fx = 0;
+	c->rcast->fy = 0;
+}
+
+void	draw_player(t_cub *c)
+{
+	int lx = c->rcast->px;
+	int ly = c->rcast->py;
+	int w = 0;
+	int h = 0;
+	while (w <= c->rcast->psize)
+	{
+		ly = c->rcast->py;
+		h = 0;
+		while (h <= c->rcast->psize)
+		{
+			mlx_pixel_put(c->rcast->mlx, c->rcast->win, lx, ly, 0xff8800);
+			ly++;
+			h++;
+		}
+		lx++;
+		w++;
+	}
+}
+
+void	draw_minimap(t_cub *c)
+{
+	if(!c->rcast->mlx)
+		return ;
+
+	int	squares = c->mheight * c->mwidth;
+	//int	mspace = 10;
+	//int	eachsize = 30;
+	c->rcast->sq_size = 30;
+	c->rcast->psize = c->rcast->sq_size / 2;
+	//int minmap_w = 100;
+	//int minmap_h = ;
+	//int	x = 0;
+	//int	y = 0;
+	//printf("mw=%d\mh=%d\n", minmap_w, minmap_h);
+	//printf("sq=%d\n", squares);
+	////printf("px=%d\n", mspace);
+	//while (x <= minmap_w)
+	//{
+	//	y = 0;
+	//	while (y <= minmap_h)
+	//	{
+	//		mlx_pixel_put(c->rcast->mlx, c->rcast->win, x, y, 0x990000);
+	//		y++;
+	//	}
+	//	x++;
+	//}
+	//printf("es=%d\n", eachsize / 2);
+	int x = 0;
+	int y = 0;
+	int a = 0;
+	int i = 0;
+	while (c->map[a])
+	{
+		x = 0;
+		i = 0;
+		while (c->map[a][i])
+		{
+			if(c->map[a][i] == 'N')
+			{
+				square(c->rcast, x, y, 0xffffff);
+				spawn_player(c, x, y);
+			}
+			else if(c->map[a][i] == '0')
+				square(c->rcast, x, y, 0xffffff);
+			else if(c->map[a][i] == '1')
+				square(c->rcast, x, y, 0x484a57);
+			i++;
+			x += c->rcast->sq_size + 2;
+		}
+		y += c->rcast->sq_size + 2;
+		a++;
+	}
 }
 
 int	close_window(t_cub	*c)
@@ -88,15 +178,52 @@ int	close_window(t_cub	*c)
     return 0;
 }
 
+int	playermove(t_cub *c)
+{
+	square(c->rcast, c->rcast->psquarex, c->rcast->psquarey, 0x01ff01);
+    draw_player(c);
+}
+
 int update(t_cub *c)
 {
-    if (c->key_w) printf("w\n");
-    //if (c->key_s) c->py += speed;
-    //if (c->key_a) c->px -= speed;
-    //if (c->key_d) c->px += speed;
-
+	int x = 0;
+	int y = 0;
+    if (c->key_w)
+	{
+		if(c->rcast->fy >= -1)
+		{
+			//c->rcast->py--;
+			c->rcast->fy -= 0.05;
+			c->rcast->py += + c->rcast->fy;
+			//printf("fy=%f\n", c->rcast->fy);
+		}
+		//c->rcast->psquarey--;
+	}
+    if (c->key_s)
+	{
+		if(c->rcast->fy < 1)
+		{
+			//printf("s\n");
+			//c->rcast->py++;
+			c->rcast->fy += 0.05;
+			c->rcast->py += + c->rcast->fy;
+			//printf("fy=%f\n", c->rcast->fy);
+		}
+		//c->rcast->psquarey++;
+	}
+    if (c->key_a)
+	{
+		//c->rcast->px--;
+		//c->rcast->psquarex--;
+	}
+    if (c->key_d)
+	{
+		//c->rcast->px++;
+		//c->rcast->psquarex++;
+	}
+	printf("fy=%f\n", c->rcast->fy);
+	playermove(c);
     //clear_image(c);          // wipe old frame
-    //drawplayer(c);           // draw player into image
     //mlx_put_image_to_window(c->mlx, c->win, c->img, 0, 0); // display whole frame
     return (0);
 }
@@ -106,12 +233,18 @@ int key_press(int key, t_cub *c)
     if (key == XK_Escape) // ESC
         return close_window(c);
     if (key == XK_w) c->key_w = 1;
+    if (key == XK_s) c->key_s = 1;
+    if (key == XK_a) c->key_a = 1;
+    if (key == XK_d) c->key_d = 1;
     return (0);
 }
 
 int key_release(int key, t_cub *c)
 {
     if (key == XK_w) c->key_w = 0;
+	if (key == XK_s) c->key_s = 0;
+    if (key == XK_a) c->key_a = 0;
+    if (key == XK_d) c->key_d = 0;
     return (0);
 }
 
