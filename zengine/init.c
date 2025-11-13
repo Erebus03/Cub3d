@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zzin <zzin@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 19:39:33 by zzin              #+#    #+#             */
-/*   Updated: 2025/11/09 21:24:45 by zzin             ###   ########.fr       */
+/*   Updated: 2025/11/13 18:15:26 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*prmap(char **map)
 	//void	*p;
 	if(!map || !*map || !**map)
 	{
-		printf("empty\n");
+		printf("Erroe\nempty\n");
 		return NULL;
 	}
 	int a = 0;

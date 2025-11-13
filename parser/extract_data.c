@@ -6,7 +6,7 @@
 /*   By: araji <araji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 11:36:14 by araji             #+#    #+#             */
-/*   Updated: 2025/11/06 17:51:38 by araji            ###   ########.fr       */
+/*   Updated: 2025/11/13 17:52:00 by araji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	extract_data(char *line, t_cub **data)
 	else if (line[0] == 'F' || line[0] == 'C')
 		return (get_colors(line, data));
 	else if (data_collected(data) //change to space
-		&& (line[0] == '1' || line[0] == '0' || line[0] == '.'))
+		&& (line[0] == '1' || line[0] == '0' || line[0] == ' '))
 	{
 		if (validate_map_chars(line, data))
 			return (collect_map(line, data));
